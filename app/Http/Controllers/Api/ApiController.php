@@ -19,4 +19,13 @@ class ApiController extends Controller
             ]
         );
     }
+
+    public function show(string $slug){
+        $project = Project::with('technologies', 'type')->findOrFail($slug);
+
+        return response()->json([
+            'success' => true,
+            'results' => $project
+        ]);
+    }
 }
